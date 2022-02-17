@@ -5,7 +5,7 @@ import {
     PrimaryGeneratedColumn,
   } from 'typeorm';
   
-//   import { UserEntity } from '../../auth/models/user.entity';
+//   import { UserEntity } from '../../auth/models/user.model';
   
   @Entity('itemsEntity')
   export class ItemsEntity {
