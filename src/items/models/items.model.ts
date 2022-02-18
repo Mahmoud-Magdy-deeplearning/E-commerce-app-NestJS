@@ -1,26 +1,27 @@
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    PrimaryGeneratedColumn,
-  } from 'typeorm';
-  
-//   import { UserEntity } from '../../auth/models/user.model';
-  
-  @Entity('itemsEntity')
-  export class ItemsEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
-  
-    @Column({ default: '' })
-    name: string;
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-    @Column({ nullable: false, type: "float", default: 0.0})
-    price: number;
-  
-    @CreateDateColumn()
-    createdAt: Date;
-  
-    // @ManyToOne(() => UserEntity, (userEntity) => userEntity.feedPosts)
-    // author: UserEntity;
-  }
+import { OrdersEntity } from '../../orders/models/orders.model';
+
+@Entity('itemsEntity')
+export class ItemsEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ default: '' })
+  name: string;
+
+  @Column({ nullable: false, type: 'float', default: 0.0 })
+  price: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @ManyToOne(() => OrdersEntity, (orderEntity) => orderEntity.items)
+  order: OrdersEntity;
+}

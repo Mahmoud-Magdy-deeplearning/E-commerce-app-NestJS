@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
-// import { User } from '../../auth/models/user.interface';
 import { ItemsEntity } from '../models/items.model';
 import { ItemsInterface } from '../models/items.interface';
 
@@ -14,9 +13,9 @@ export class ItemsService {
     private readonly ItemsRepository: Repository<ItemsEntity>,
   ) {}
 
-  createItem(item: ItemsInterface, ): Observable<ItemsInterface> {
+  createItem(item: ItemsInterface): Observable<ItemsInterface> {
     const { name, price } = item;
-    return from(this.ItemsRepository.save({name, price}));
+    return from(this.ItemsRepository.save({ name, price }));
   }
 
   findAllItems(): Observable<ItemsInterface[]> {
@@ -32,8 +31,6 @@ export class ItemsService {
   }
 
   findItemById(id: number): Observable<ItemsInterface> {
-    return from(
-      this.ItemsRepository.findOne({ id }),
-    );
+    return from(this.ItemsRepository.findOne({ id }));
   }
 }

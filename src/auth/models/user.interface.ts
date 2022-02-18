@@ -1,5 +1,5 @@
 import { IsEmail, IsString } from 'class-validator';
-// import { OrdersInterface } from '../../orders/models/orders.interface';
+import { OrdersInterface } from '../../orders/models/orders.interface';
 import { Role } from './roles.enum';
 
 export class User {
@@ -11,5 +11,5 @@ export class User {
   @IsString()
   password?: string;
   role?: Role;
-  // orders?: OrdersInterface[];
+  orders?: OrdersInterface[];
 }

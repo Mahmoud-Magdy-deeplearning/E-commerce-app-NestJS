@@ -1,51 +1,59 @@
 import {
   Body,
   Controller,
+  Request,
   Delete,
   Get,
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-
-// import { JwtGuard } from '../../auth/guards/jwt.guard';
-
+import { JwtGuard } from '../../auth/guards/jwt.guard';
 import { OrdersInterface } from '../models/orders.interface';
 import { OrdersService } from '../services/orders.service';
-
-// import { IsCreatorGuard } from '../guards/is-creator.guard';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private orderService: OrdersService) {}
 
+  // Create order if you are a user
+  @UseGuards(JwtGuard)
   @Post()
-  create(@Body() order: OrdersInterface): Observable<OrdersInterface> {
-    return this.orderService.createorder(order);
+  create(
+    @Body() order: OrdersInterface,
+    @Request() req,
+  ): Observable<OrdersInterface> {
+    return this.orderService.createOrder(req.user, order);
   }
 
+  @UseGuards(JwtGuard)
   @Get()
-  findAll(): Observable<OrdersInterface[]> {
-    return this.orderService.findAllorders();
+  findAll(@Request() req): any {
+    console.log(req);
+    return this.orderService.findAllOrders(req.user);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number): Observable<OrdersInterface> {
-    return this.orderService.findorderById(id);
-  }
-
+  @UseGuards(JwtGuard)
   @Put(':id')
   update(
     @Param('id') id: number,
     @Body() order: OrdersInterface,
   ): Observable<UpdateResult> {
-    return this.orderService.updateorder(id, order);
+    return this.orderService.updateOrder(id, order);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   delete(@Param('id') id: number): Observable<DeleteResult> {
-    return this.orderService.deleteorder(id);
+    return this.orderService.deleteOrder(id);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get(':id')
+  findOne(@Param('id') id: number): Observable<OrdersInterface> {
+    return this.orderService.findOrderById(id);
   }
 }

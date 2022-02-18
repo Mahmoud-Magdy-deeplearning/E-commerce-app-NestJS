@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-
-// import { User } from '../../auth/models/user.interface';
 import { OrdersEntity } from '../models/orders.model';
 import { OrdersInterface } from '../models/orders.interface';
+import { User } from '../../auth/models/user.interface';
+import { Role } from '../../auth/models/roles.enum';
 
 @Injectable()
 export class OrdersService {
@@ -13,25 +13,31 @@ export class OrdersService {
     @InjectRepository(OrdersEntity)
     private readonly OrdersRepository: Repository<OrdersEntity>,
   ) {}
-
-  createorder(order: OrdersInterface): Observable<OrdersInterface> {
-    const { name, price } = order;
-    return from(this.OrdersRepository.save({ name, price }));
+  createOrder(user: User, order: OrdersInterface): Observable<OrdersInterface> {
+    order.author = user;
+    //save Order to Database
+    return from(this.OrdersRepository.save(order));
   }
 
-  findAllorders(): Observable<OrdersInterface[]> {
-    return from(this.OrdersRepository.find());
+  findAllOrders(user: User): any {
+    if (user.role == Role.ADMIN)
+      return from(
+        this.OrdersRepository.find({ relations: ['author', 'items'] }),
+      );
+    else return 'Not allowed';
   }
 
-  updateorder(id: number, order: OrdersInterface): Observable<UpdateResult> {
+  updateOrder(id: number, order: OrdersInterface): Observable<UpdateResult> {
     return from(this.OrdersRepository.update(id, order));
   }
 
-  deleteorder(id: number): Observable<DeleteResult> {
+  deleteOrder(id: number): Observable<DeleteResult> {
     return from(this.OrdersRepository.delete(id));
   }
 
-  findorderById(id: number): Observable<OrdersInterface> {
-    return from(this.OrdersRepository.findOne({ id }));
+  findOrderById(id: number): Observable<OrdersInterface> {
+    return from(
+      this.OrdersRepository.findOne({ id }, { relations: ['author'] }),
+    );
   }
 }

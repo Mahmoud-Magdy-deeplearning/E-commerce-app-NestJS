@@ -7,7 +7,6 @@ import { AuthController } from './controllers/auth.controller';
 import { UserEntity } from './models/user.model';
 import { JwtGuard } from './guards/jwt.guard';
 import { JwtStrategy } from './guards/jwt.strategy';
-// import { RolesGuard } from './guards/roles.guard';
 import { UserService } from './services/user.service';
 import { UserController } from './controllers/user.controller';
 
@@ -21,13 +20,7 @@ import { UserController } from './controllers/user.controller';
     }),
     TypeOrmModule.forFeature([UserEntity]),
   ],
-  providers: [
-    AuthService,
-    JwtGuard,
-    JwtStrategy,
-    // RolesGuard,
-    UserService,
-  ],
+  providers: [AuthService, JwtGuard, JwtStrategy, UserService],
   controllers: [AuthController, UserController],
   exports: [AuthService, UserService],
 })

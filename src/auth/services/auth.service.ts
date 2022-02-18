@@ -90,7 +90,7 @@ export class AuthService {
     );
   }
 
-  login(user: User): Observable<string> {
+  login(user: User): any {
     const { email, password } = user;
     return this.validateUser(email, password).pipe(
       switchMap((user: User) => {

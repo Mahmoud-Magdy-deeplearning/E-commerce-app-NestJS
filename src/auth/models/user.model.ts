@@ -1,12 +1,11 @@
 import {
   Column,
   Entity,
-  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-// import { OrdersEntity } from '../../orders/models/orders.model';
+import { OrdersEntity } from '../../orders/models/orders.model';
 import { Role } from './roles.enum';
 
 @Entity('user')
@@ -29,7 +28,7 @@ export class UserEntity {
   @Column({ type: 'enum', enum: Role, default: Role.USER })
   role: Role;
 
-  // @OneToMany(() => OrdersEntity, (OrdersEntity) => OrdersEntity.author)
-  // Orders: OrdersEntity[];
+  @OneToMany(() => OrdersEntity, (ordersEntity) => ordersEntity.author)
+  orders: OrdersEntity[];
 
 }

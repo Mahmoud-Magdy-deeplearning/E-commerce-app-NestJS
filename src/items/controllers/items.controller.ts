@@ -5,17 +5,13 @@ import {
   Get,
   Param,
   Post,
-  Put
+  Put,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
-// import { JwtGuard } from '../../auth/guards/jwt.guard';
-
 import { ItemsInterface } from '../models/items.interface';
 import { ItemsService } from '../services/items.service';
-
-// import { IsCreatorGuard } from '../guards/is-creator.guard';
 
 @Controller('items')
 export class ItemsController {
@@ -31,12 +27,10 @@ export class ItemsController {
     return this.itemService.findAllItems();
   }
 
-  
   @Get(':id')
-  findOne(@Param('id') id: number):  Observable<ItemsInterface> {
+  findOne(@Param('id') id: number): Observable<ItemsInterface> {
     return this.itemService.findItemById(id);
   }
-
 
   @Put(':id')
   update(
