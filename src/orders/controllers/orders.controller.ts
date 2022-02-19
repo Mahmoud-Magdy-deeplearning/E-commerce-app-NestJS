@@ -32,7 +32,6 @@ export class OrdersController {
   @UseGuards(JwtGuard)
   @Get()
   findAll(@Request() req): any {
-    console.log(req);
     return this.orderService.findAllOrders(req.user);
   }
 
