@@ -18,8 +18,14 @@ import { AuthModule } from './auth/auth.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       url: process.env.URL,
+      ssl: true,
       autoLoadEntities: true,
       synchronize: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     }),
     ItemsModule,
     AuthModule,

@@ -28,8 +28,15 @@ AppModule = __decorate([
                 username: process.env.POSTGRES_USER,
                 password: process.env.POSTGRES_PASSWORD,
                 database: process.env.POSTGRES_DATABASE,
+                url: process.env.URL,
+                ssl: true,
                 autoLoadEntities: true,
                 synchronize: true,
+                extra: {
+                    ssl: {
+                        rejectUnauthorized: false,
+                    },
+                },
             }),
             item_module_1.ItemsModule,
             auth_module_1.AuthModule,
