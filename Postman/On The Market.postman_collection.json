@@ -11,7 +11,7 @@
 				{
 					"name": "Register",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": null
 					},
@@ -20,7 +20,7 @@
 				{
 					"name": "login",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": null,
 						"description": "Admins : \n{\n    \"firstName\" : \"admin\",\n    \"lastName\" : \"admin\",\n    \"email\" : \"admin@gmail.com\",\n    \"password\" : \"admin123\"\n}\n{\n    \"firstName\" : \"Ahmed\",\n    \"lastName\" : \"Ali\",\n    \"email\" : \"Ahmed@gmail.com\",\n    \"password\" : \"Ahmed123\"\n}\n\nUsers : \n{\n    \"firstName\" : \"mhmd\",\n    \"lastName\" : \"gmal\",\n    \"email\" : \"mhmd@gmail.com\",\n    \"password\" : \"mhmd123\"\n}\n{\n    \"firstName\" : \"samir\",\n    \"lastName\" : \"john\",\n    \"email\" : \"samir@gmail.com\",\n    \"password\" : \"samir123\"\n}\n{\n    \"firstName\" : \"fahd\",\n    \"lastName\" : \"raul\",\n    \"email\" : \"raul@gmail.com\",\n    \"password\" : \"raul123\"\n}"
@@ -35,7 +35,7 @@
 				{
 					"name": "Create Item",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": null
 					},
@@ -53,7 +53,7 @@
 				{
 					"name": "Delete Item",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": null
 					},
@@ -62,7 +62,7 @@
 				{
 					"name": "Update item",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
 						"url": null
 					},
@@ -76,7 +76,7 @@
 				{
 					"name": "Create order",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": null,
 						"description": "User can make order"
@@ -86,7 +86,7 @@
 				{
 					"name": "Update order",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
 						"url": null
 					},
@@ -114,7 +114,7 @@
 				{
 					"name": "Delete order",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": null
 					},
