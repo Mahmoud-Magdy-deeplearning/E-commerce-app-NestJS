@@ -1,3 +1,9 @@
+<h1 align="center">
+E-Commerce app using NestJS & PostgreSQL
+</h1>
+<h1 align="center">
+By Mahmoud Magdy
+</h1>
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
@@ -22,9 +28,17 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Website
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+```bash
+# you can access the api from
+https://on-the-market.herokuapp.com/
+```
+
+## Postman
+
+<p>You will find Postman folder has a collection of the available REST apis, you could Import them to your postman and try them</p>
+<p>I added a data.txt file in postman folder which has admin user for accessing specific paths</p>
 
 ## Installation
 
@@ -37,37 +51,7 @@ $ npm install
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - [Mahmoud Magdy](mahmoudmagdymahmoud1@gmail.com)
