@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "60c52297-8c9e-4354-a251-a3c3eac46cc0",
+		"name": "On The Market",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null,
+						"description": "Admins : \n{\n    \"firstName\" : \"admin\",\n    \"lastName\" : \"admin\",\n    \"email\" : \"admin@gmail.com\",\n    \"password\" : \"admin123\"\n}\n{\n    \"firstName\" : \"Ahmed\",\n    \"lastName\" : \"Ali\",\n    \"email\" : \"Ahmed@gmail.com\",\n    \"password\" : \"Ahmed123\"\n}\n\nUsers : \n{\n    \"firstName\" : \"mhmd\",\n    \"lastName\" : \"gmal\",\n    \"email\" : \"mhmd@gmail.com\",\n    \"password\" : \"mhmd123\"\n}\n{\n    \"firstName\" : \"samir\",\n    \"lastName\" : \"john\",\n    \"email\" : \"samir@gmail.com\",\n    \"password\" : \"samir123\"\n}\n{\n    \"firstName\" : \"fahd\",\n    \"lastName\" : \"raul\",\n    \"email\" : \"raul@gmail.com\",\n    \"password\" : \"raul123\"\n}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "items",
+			"item": [
+				{
+					"name": "Create Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "Create order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null,
+						"description": "User can make order"
+					},
+					"response": []
+				},
+				{
+					"name": "Update order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null,
+						"description": "Only admins can see all orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Get order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

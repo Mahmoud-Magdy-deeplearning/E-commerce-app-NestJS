@@ -16,7 +16,7 @@ export class AuthService {
     private readonly userRepository: Repository<UserEntity>,
     private jwtService: JwtService,
   ) {}
-  
+
   hashPassword(password: string): Observable<string> {
     return from(bcrypt.hash(password, 12));
   }

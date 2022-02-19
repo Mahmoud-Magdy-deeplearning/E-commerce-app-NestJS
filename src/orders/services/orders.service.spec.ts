@@ -1,74 +1,66 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
-
-const httpMocks = require('node-mocks-http');
-
-import { User } from '../../auth/models/user.interface';
-import { ItemsInterface } from '../../items/models/items.interface';
 import { OrdersService } from './orders.service';
-import { OrdersInterface } from '../models/orders.interface';
-import { OrdersEntity } from '../models/orders.model';
+import { OrdersInterface } from '.././models/orders.interface';
+let httpMocks = require('node-mocks-http');
 
-describe('OrdersService', () => {
-  let order: OrdersService;
+class ApiServiceMock {
+  createOrder(req: any, dto: OrdersInterface) {
+    return {};
+  }
+  findOrderById(id: number) {
+    return {};
+  }
+  findAllOrders() {
+    return [];
+  }
+  deleteOrder(id: number) {
+    return null;
+  }
+}
+const req = httpMocks.createRequest();
 
-  const mockRequest = httpMocks.createRequest();
-  mockRequest.user = new User();
-  mockRequest.user.firstName = 'Jon';
+describe.only('OrdersService', () => {
+  let orderService: OrdersService;
 
-  const mockitems: OrdersInterface = {
-    totalPrice: 800,
-    createdAt: new Date(),
-    author: mockRequest.user,
-    items: [
-      {
-        id: 1,
-      },
-    ],
-  };
-
-  const mockOrdersRepository = {
-    createOrder: jest
-      .fn()
-      .mockImplementation((user: User, order: OrdersInterface) => {
-        return {
-          ...order,
-        };
-      }),
-    save: jest
-      .fn()
-      .mockImplementation((order: OrdersInterface) =>
-        Promise.resolve({ id: 1, order }),
-      ),
-  };
-
-  beforeEach(async () => {
-    const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [
-        OrdersService,
-        {
-          provide: getRepositoryToken(OrdersEntity),
-          useValue: mockOrdersRepository,
-        },
-      ],
+  beforeAll(async () => {
+    const ApiServiceProvider = {
+      provide: OrdersService,
+      useClass: ApiServiceMock,
+    };
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [OrdersService, ApiServiceProvider],
     }).compile();
-
-    order = moduleRef.get<OrdersService>(OrdersService);
+    orderService = module.get<OrdersService>(OrdersService);
   });
 
-  it('should be defined', () => {
-    expect(order).toBeDefined();
+  it('should call  createOrder with expected params', async () => {
+    const createOrderSpy = jest.spyOn(orderService, 'createOrder');
+    const dto = {
+      name: 'Order 2',
+      totalPrice: 90,
+      items: [{ id: 1 }, { id: 2 }],
+    };
+    orderService.createOrder(req, dto);
+    expect(createOrderSpy).toHaveBeenCalledWith(req, dto);
   });
 
-  it('should create an Item', (done: jest.DoneCallback) => {
-    order
-      .createOrder(mockRequest.user, mockitems)
-      .subscribe((order: OrdersInterface) => {
-        expect(order).toEqual({
-          id: expect.any(Number),
-          mockitems,
-        });
-        done();
-      });
+  it('should call findOrderById method with expected param', async () => {
+    const findOneNoteSpy = jest.spyOn(orderService, 'findOrderById');
+    const orderId = 2;
+    orderService.findOrderById(orderId);
+    expect(findOneNoteSpy).toHaveBeenCalledWith(orderId);
+  });
+
+  it('should call findAllOrders method with expected params', async () => {
+    const findAllItemsSpy = jest.spyOn(orderService, 'findAllOrders');
+    orderService.findAllOrders(req);
+    expect(findAllItemsSpy).toHaveBeenCalledWith(req);
+  });
+
+  it('should call deleteOrder method with expected param', async () => {
+    const deleteOrderSpy = jest.spyOn(orderService, 'deleteOrder');
+    const orderId = 1;
+    orderService.deleteOrder(orderId);
+    expect(deleteOrderSpy).toHaveBeenCalledWith(orderId);
   });
 });

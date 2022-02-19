@@ -1,9 +1,4 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { OrdersEntity } from '../../orders/models/orders.model';
 import { Role } from './roles.enum';
@@ -30,5 +25,4 @@ export class UserEntity {
 
   @OneToMany(() => OrdersEntity, (ordersEntity) => ordersEntity.author)
   orders: OrdersEntity[];
-
 }

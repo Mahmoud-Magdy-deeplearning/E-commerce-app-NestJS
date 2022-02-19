@@ -1,0 +1,18 @@
+{
+    "firstName" : "mhmd",
+    "lastName" : "gmal",
+    "email" : "mhmd@gmail.com",
+    "password" : "mhmd123"
+}
+{
+    "firstName" : "samir",
+    "lastName" : "john",
+    "email" : "samir@gmail.com",
+    "password" : "samir123"
+}
+{
+    "firstName" : "fahd",
+    "lastName" : "raul",
+    "email" : "raul@gmail.com",
+    "password" : "raul123"
+}

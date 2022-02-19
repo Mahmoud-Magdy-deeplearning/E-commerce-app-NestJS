@@ -14,9 +14,7 @@ export class UserService {
   ) {}
 
   findUserById(id: number): Observable<User> {
-    return from(
-      this.userRepository.findOne({ id }, { relations: ['feedPosts'] }),
-    ).pipe(
+    return from(this.userRepository.findOne({ id })).pipe(
       map((user: User) => {
         if (!user) {
           throw new HttpException('User not found', HttpStatus.NOT_FOUND);
